@@ -1,0 +1,8 @@
+# Netlify redirects for SPA-like behavior
+/index.html / 200
+/services.html /services 200
+/contact.html /contact 200
+/about.html /about 200
+
+# Fallback for all other routes to index.html
+/* /index.html 200

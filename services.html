@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Ecologic Cleaning Services UAE</title>
+    <meta name="description" content="Comprehensive environmental cleaning services including emergency jetting, drain unblocking, liquid waste disposal, septic tank cleaning across UAE.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'eco-green': '#059669',
+                        'eco-green-light': '#10b981',
+                        'eco-blue': '#0ea5e9',
+                        'eco-blue-light': '#e0f2fe',
+                        'eco-gray': '#f8fafc',
+                        'eco-dark': '#1e293b'
+                    },
+                    fontFamily: {
+                        'display': ['Poppins', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .service-item {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .service-item:hover {
+            transform: translateY(-8px) rotateX(2deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .filter-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .filter-btn.active {
+            background: #059669;
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+        }
+        
+        .service-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .service-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #64748b;
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: #dc2626;
+        }
+        
+        .service-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .emergency-banner {
+            background: linear-gradient(90deg, #dc2626 0%, #ef4444 100%);
+            animation: pulse-slow 3s infinite;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav-link:hover {
+            color: #059669;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #059669;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .hamburger {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+        
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            .mobile-menu {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 80%;
+                height: 100vh;
+                background: white;
+                z-index: 1000;
+                box-shadow: -10px 0 25px -5px rgba(0, 0, 0, 0.1);
+            }
+            
+            .mobile-menu-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+        }
+    </style>
+</head>
+<body class="font-body bg-white">
+    <!-- Emergency Banner -->
+    <div class="emergency-banner text-white text-center py-2 text-sm font-medium">
+        <i class="fas fa-exclamation-triangle mr-2"></i>
+        24/7 Emergency Services Available - Call Now: 
+        <a href="tel:+971589076688" class="underline font-bold">+971 58 907 6688</a> | 
+        <a href="tel:+971582658191" class="underline font-bold">+971 58 265 8191</a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="logo-placeholder mr-3">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-display font-bold text-eco-green">Ecologic Cleaning</h1>
+                            <p class="text-xs text-gray-500 font-body">Professional Services</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link text-gray-700 hover:text-eco-green font-medium">Home</a>
+                        <a href="services.html" class="nav-link text-eco-green font-medium">Services</a>
+                        <a href="about.html" class="nav-link text-gray-700 hover:text-eco-green font-medium">About</a>
+                        <a href="contact.html" class="nav-link text-gray-700 hover:text-eco-green font-medium">Contact</a>
+                        <button class="emergency-contact bg-red-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-600 transition-colors" onclick="showEmergencyModal()">
+                            <i class="fas fa-phone mr-2"></i>Emergency
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button class="hamburger mobile-menu-btn text-gray-700 hover:text-eco-green" onclick="toggleMobileMenu()">
+                        <span class="block w-6 h-0.5 bg-current mb-1"></span>
+                        <span class="block w-6 h-0.5 bg-current mb-1"></span>
+                        <span class="block w-6 h-0.5 bg-current"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-menu">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-8">
+                    <div class="flex items-center">
+                        <div class="logo-placeholder mr-3">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="text-lg font-display font-bold text-eco-green">Menu</h3>
+                    </div>
+                    <button onclick="toggleMobileMenu()" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <div class="space-y-4">
+                    <a href="index.html" class="block py-3 px-4 text-gray-700 hover:text-eco-green font-medium hover:bg-gray-50 rounded-lg transition-colors">
+                        <i class="fas fa-home mr-3"></i>Home
+                    </a>
+                    <a href="services.html" class="block py-3 px-4 text-eco-green font-medium border-l-4 border-eco-green bg-eco-green bg-opacity-10 rounded-lg">
+                        <i class="fas fa-services mr-3"></i>Services
+                    </a>
+                    <a href="about.html" class="block py-3 px-4 text-gray-700 hover:text-eco-green font-medium hover:bg-gray-50 rounded-lg transition-colors">
+                        <i class="fas fa-info-circle mr-3"></i>About
+                    </a>
+                    <a href="contact.html" class="block py-3 px-4 text-gray-700 hover:text-eco-green font-medium hover:bg-gray-50 rounded-lg transition-colors">
+                        <i class="fas fa-phone mr-3"></i>Contact
+                    </a>
+                    <button class="w-full mt-6 bg-red-500 text-white px-4 py-3 rounded-lg font-medium hover:bg-red-600 transition-colors" onclick="showEmergencyModal(); toggleMobileMenu();">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>Emergency Call
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40 hidden" id="mobile-menu-overlay" onclick="toggleMobileMenu()"></div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="bg-eco-blue-light py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl font-display font-bold text-gray-900 mb-6">Our Professional Services</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto font-body">
+                Comprehensive environmental cleaning solutions for residential, commercial, and industrial needs across all UAE emirates
+            </p>
+            <div class="mt-8">
+                <nav class="flex justify-center" aria-label="Breadcrumb">
+                    <ol class="flex items-center space-x-2">
+                        <li><a href="index.html" class="text-eco-green hover:underline">Home</a></li>
+                        <li><span class="text-gray-400">/</span></li>
+                        <li class="text-gray-600">Services</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Filters -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="filter-btn active px-6 py-3 rounded-full border border-eco-green text-eco-green font-medium" data-filter="all">
+                    All Services
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full border border-eco-green text-eco-green font-medium" data-filter="emergency">
+                    Emergency Services
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full border border-eco-green text-eco-green font-medium" data-filter="drainage">
+                    Drainage Solutions
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full border border-eco-green text-eco-green font-medium" data-filter="waste">
+                    Waste Management
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full border border-eco-green text-eco-green font-medium" data-filter="maintenance">
+                    Maintenance
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="py-20 bg-eco-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Emergency Jetting Unit -->
+                <div class="service-item bg-white rounded-xl shadow-lg overflow-hidden fade-in" data-category="emergency">
+                    <img src="https://kimi-web-img.moonshot.cn/img/www.customtruck.com/01aa09b731df3974b578a7ec0eb334a1bc49589d.jpg" alt="Emergency Jetting Unit" class="service-image">
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-exclamation-triangle text-red-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-display font-semibold text-gray-900">Emergency Jetting Unit</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6 font-body">24/7 emergency response with high-pressure jetting units for critical drainage issues. Immediate dispatch across all UAE emirates.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium">24/7 Available</span>
+                            <button onclick="openServiceModal('emergency-jetting')" class="text-eco-green font-medium hover:underline transition-colors">
+                                View Details <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Drain Unblocking -->
+                <div class="service-item bg-white rounded-xl shadow-lg overflow-hidden fade-in" data-category="drainage">
+                    <img src="https://kimi-web-img.moonshot.cn/img/supervac.co/51613a07e1df47f0621e0c62d95ca31295376787.jpg" alt="Drain Unblocking" class="service-image">
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-water text-blue-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-display font-semibold text-gray-900">Drain Unblocking & Cleaning</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6 font-body">Professional drain unblocking services using advanced hydro jetting and vacuum equipment for all drainage systems.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Same Day</span>
+                            <button onclick="openServiceModal('drain-unblocking')" class="text-eco-green font-medium hover:underline transition-colors">
+                                View Details <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Drain Line Jetting -->
+                <div class="service-item bg-white rounded-xl shadow-lg overflow-hidden fade-in" data-category="drainage">
+                    <img src="https://kimi-web-img.moonshot.cn/img/cole-cleaner.imgix.net/8137229603fc92e71b2f62abe78d50a1484013a7.jpg" alt="Drain Line Jetting" class="service-image">
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-fire text-green-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-display font-semibold text-gray-900">Drain Line Jetting Services</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6 font-body">High-pressure water jetting for thorough drain line cleaning, removing stubborn blockages and buildup.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Preventive</span>
+                            <button onclick="openServiceModal('drain-jetting')" class="text-eco-green font-medium hover:underline transition-colors">
+                                View Details <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Liquid Waste Collection -->
+                <div class="service-item bg-white rounded-xl shadow-lg overflow-hidden fade-in" data-category="waste">
+                    <img src="https://kimi-web-img.moonshot.cn/img/ecoliquidwaste.com/008bfcee411ad4b02ba583860b29568078c83ade.jpg" alt="Liquid Waste Collection" class="service-image">
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-truck text-amber-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-display font-semibold text-gray-900">Liquid Waste Collection & Disposal</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6 font-body">Safe and efficient collection and disposal of all types of liquid waste with full environmental compliance.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm font-medium">Compliant</span>
+                            <button onclick="openServiceModal('liquid-waste')" class="text-eco-green font-medium hover:underline transition-colors">
+                                View Details <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sump Pit Cleaning -->
+                <div class="service-item bg-white rounded-xl shadow-lg overflow-hidden fade-in" data-category="maintenance">
+                    <img src="https://kimi-web-img.moonshot.cn/img/greasetrapcleaninguae.com/4171f22ecde5fa6ae7f7f0c54e760c50d07ad98f.png" alt="Sump Pit Cleaning" class="service-image">
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-tools text-purple-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-display font-semibold text-gray-900">Sump Pit / Lift Station Cleaning</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6 font-body">Professional cleaning and maintenance of sump pits and lift stations to prevent flooding and ensure proper operation.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Maintenance</span>
+                            <button onclick="openServiceModal('sump-pit')" class="text-eco-green font-medium hover:underline transition-colors">
+                                View Details <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Septic Tank Cleaning -->
+                <div class="service-item bg-white rounded-xl shadow-lg overflow-hidden fade-in" data-category="maintenance">
+                    <img src="https://kimi-web-img.moonshot.cn/img/shanksterbros.net/c888a6361fd04073a503b2f77c26c4dae6c0e631.jpg" alt="Septic Tank Cleaning" class="service-image">
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-flask text-indigo-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-display font-semibold text-gray-900">Septic Tank Cleaning</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6 font-body">Comprehensive septic tank cleaning and pumping services for residential and commercial properties.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">Essential</span>
+                            <button onclick="openServiceModal('septic-tank')" class="text-eco-green font-medium hover:underline transition-colors">
+                                View Details <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sewage Treatment Plant -->
+                <div class="service-item bg-white rounded-xl shadow-lg overflow-hidden fade-in" data-category="maintenance">
+                    <img src="https://kimi-web-img.moonshot.cn/img/environmentalcleaning.org/8c997c2bd06ebd03cc78adfc9d18e334953faf9d.jpg" alt="Sewage Treatment Plant" class="service-image">
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-industry text-teal-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-display font-semibold text-gray-900">Sewage Treatment Plant Cleaning</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6 font-body">Specialized cleaning and maintenance services for sewage treatment plants and wastewater facilities.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm font-medium">Industrial</span>
+                            <button onclick="openServiceModal('sewage-plant')" class="text-eco-green font-medium hover:underline transition-colors">
+                                View Details <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Warehouse Floor Cleaning -->
+                <div class="service-item bg-white rounded-xl shadow-lg overflow-hidden fade-in" data-category="maintenance">
+                    <img src="https://kimi-web-img.moonshot.cn/img/www.rigolift.com/be27e3e063a1ec11309e0e630aedae5119fa1be7.jpg" alt="Warehouse Floor Cleaning" class="service-image">
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-broom text-cyan-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-display font-semibold text-gray-900">Warehouse Floors Cleaning</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6 font-body">Industrial warehouse floor cleaning and maintenance services using specialized equipment.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-sm font-medium">Commercial</span>
+                            <button onclick="openServiceModal('warehouse-cleaning')" class="text-eco-green font-medium hover:underline transition-colors">
+                                View Details <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Waste Water Removal -->
+                <div class="service-item bg-white rounded-xl shadow-lg overflow-hidden fade-in" data-category="waste">
+                    <img src="https://kimi-web-img.moonshot.cn/img/watertankcleaners.co.in/d8df22d65e67d014889874b848ffbb4929ad8106.jpg" alt="Waste Water Removal" class="service-image">
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-tint text-orange-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-display font-semibold text-gray-900">Waste Water Removal</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6 font-body">Efficient removal and disposal of waste water from various sources including floods and leaks.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">Emergency</span>
+                            <button onclick="openServiceModal('waste-water')" class="text-eco-green font-medium hover:underline transition-colors">
+                                View Details <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Streets Cleaning -->
+                <div class="service-item bg-white rounded-xl shadow-lg overflow-hidden fade-in" data-category="maintenance">
+                    <img src="https://kimi-web-img.moonshot.cn/img/img1.wsimg.com/53726969318c9abade70b760d31b1c6591aabda0.jpg" alt="Streets Cleaning" class="service-image">
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-lime-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-road text-lime-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-display font-semibold text-gray-900">Streets Cleaning Services</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6 font-body">Municipal and commercial street cleaning services to maintain clean and safe public areas.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-lime-100 text-lime-800 px-3 py-1 rounded-full text-sm font-medium">Municipal</span>
+                            <button onclick="openServiceModal('streets-cleaning')" class="text-eco-green font-medium hover:underline transition-colors">
+                                View Details <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sewage Water Transport -->
+                <div class="service-item bg-white rounded-xl shadow-lg overflow-hidden fade-in" data-category="waste">
+                    <img src="https://kimi-web-img.moonshot.cn/img/albarr.ae/e13741a1c4715f56b8ceced9190b0e16a7f499d9.jpg" alt="Sewage Water Transport" class="service-image">
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-pump-soap text-pink-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-display font-semibold text-gray-900">Sewage Water Transport</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6 font-body">Transport of sewage water using specialized pumping tankers for safe and compliant disposal.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm font-medium">Transport</span>
+                            <button onclick="openServiceModal('sewage-transport')" class="text-eco-green font-medium hover:underline transition-colors">
+                                View Details <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grease Trap Cleaning -->
+                <div class="service-item bg-white rounded-xl shadow-lg overflow-hidden fade-in" data-category="maintenance">
+                    <img src="https://kimi-web-img.moonshot.cn/img/greasetrapboston.com/90a30c60f578940b0f04ae018d406b2487290afe.jpg" alt="Grease Trap Cleaning" class="service-image">
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-filter text-yellow-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-display font-semibold text-gray-900">Grease Traps Cleaning & Waste Removal</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6 font-body">Professional grease trap cleaning and waste removal services for restaurants and commercial kitchens.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">F&B</span>
+                            <button onclick="openServiceModal('grease-trap')" class="text-eco-green font-medium hover:underline transition-colors">
+                                View Details <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Request CTA -->
+    <section class="py-20 bg-eco-blue-light">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-display font-bold text-gray-900 mb-6">Need Professional Cleaning Services?</h2>
+            <p class="text-xl text-gray-600 mb-8 font-body">
+                Contact us today for immediate service or schedule a consultation. We're available 24/7 for emergency situations.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="bg-eco-green text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-700 transition-colors text-lg shadow-lg hover:shadow-xl">
+                    <i class="fas fa-phone mr-2"></i>Contact Us
+                </a>
+                <a href="tel:+971589076688" class="bg-red-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-600 transition-colors text-lg shadow-lg hover:shadow-xl">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>Emergency Call
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+        <button class="bg-green-500 text-white w-16 h-16 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center" onclick="openWhatsApp()">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </button>
+    </div>
+
+    <!-- Service Modal -->
+    <div id="service-modal" class="service-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeServiceModal()">&times;</span>
+            <div id="modal-body">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="logo-placeholder mr-3">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="text-2xl font-display font-bold text-eco-green">Ecologic Cleaning</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 font-body">Professional environmental cleaning services across the UAE. We are committed to providing sustainable and efficient cleaning solutions.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-eco-green transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-eco-green transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-eco-green transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-eco-green transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-display font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-eco-green transition-colors">Home</a></li>
+                        <li><a href="services.html" class="text-gray-300 hover:text-eco-green transition-colors">Services</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-eco-green transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-eco-green transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-display font-semibold mb-4">Contact Info</h4>
+                    <div class="space-y-2 text-gray-300">
+                        <p><i class="fas fa-phone mr-2 text-eco-green"></i>+971 58 907 6688</p>
+                        <p><i class="fas fa-phone mr-2 text-eco-green"></i>+971 58 265 8191</p>
+                        <p><i class="fas fa-envelope mr-2 text-eco-blue"></i>ecologicuae@gmail.com</p>
+                        <p><i class="fas fa-map-marker-alt mr-2 text-eco-green"></i>UAE - All Emirates</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p class="font-body">&copy; 2024 Ecologic Cleaning Services. All rights reserved. | Dubai Municipality Approved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+    
+    <script>
+        // Service Modal Data
+        const serviceData = {
+            'emergency-jetting': {
+                title: 'Emergency Jetting Unit',
+                image: 'https://kimi-web-img.moonshot.cn/img/www.customtruck.com/01aa09b731df3974b578a7ec0eb334a1bc49589d.jpg',
+                description: 'Our 24/7 emergency jetting unit service provides immediate response for critical drainage issues. We deploy high-pressure jetting equipment within 60 minutes across all UAE emirates.',
+                features: [
+                    '24/7 emergency response team',
+                    'High-pressure jetting equipment (up to 4000 PSI)',
+                    'Immediate dispatch within 60 minutes',
+                    'Experienced technicians on standby',
+                    'Coverage across all UAE emirates'
+                ],
+                process: [
+                    'Emergency call received and assessed',
+                    'Nearest team dispatched immediately',
+                    'On-site evaluation and problem diagnosis',
+                    'High-pressure jetting to clear blockages',
+                    'Thorough testing and cleanup'
+                ],
+                equipment: 'High-pressure jetting units, CCTV inspection cameras, vacuum tankers, safety equipment'
+            },
+            'drain-unblocking': {
+                title: 'Drain Unblocking & Cleaning',
+                image: 'https://kimi-web-img.moonshot.cn/img/supervac.co/51613a07e1df47f0621e0c62d95ca31295376787.jpg',
+                description: 'Professional drain unblocking services using advanced hydro jetting and vacuum equipment. We handle all types of drainage systems for residential, commercial, and industrial properties.',
+                features: [
+                    'Same-day service availability',
+                    'Advanced hydro jetting technology',
+                    'CCTV drain inspection',
+                    'Root cutting and removal',
+                    'Preventive maintenance plans'
+                ],
+                process: [
+                    'Initial assessment and diagnosis',
+                    'CCTV inspection to identify blockage',
+                    'Hydro jetting to clear obstruction',
+                    'Final inspection and testing',
+                    'Preventive recommendations provided'
+                ],
+                equipment: 'Hydro jetting machines, CCTV cameras, drain rods, vacuum tankers'
+            },
+            'drain-jetting': {
+                title: 'Drain Line Jetting Services',
+                image: 'https://kimi-web-img.moonshot.cn/img/cole-cleaner.imgix.net/8137229603fc92e71b2f62abe78d50a1484013a7.jpg',
+                description: 'High-pressure water jetting for thorough drain line cleaning, removing stubborn blockages and buildup. Our advanced jetting equipment can handle even the most challenging drainage issues.',
+                features: [
+                    'High-pressure water jetting up to 4000 PSI',
+                    'Removes grease, scale, and debris',
+                    'Root cutting capabilities',
+                    'Preventive maintenance programs',
+                    'Eco-friendly cleaning solutions'
+                ],
+                process: [
+                    'Initial drain inspection',
+                    'High-pressure water jetting application',
+                    'Debris removal and flushing',
+                    'Post-cleaning inspection',
+                    'Maintenance schedule recommendation'
+                ],
+                equipment: 'High-pressure jetting units, specialized nozzles, CCTV cameras, safety equipment'
+            },
+            'liquid-waste': {
+                title: 'Liquid Waste Collection & Disposal',
+                image: 'https://kimi-web-img.moonshot.cn/img/ecoliquidwaste.com/008bfcee411ad4b02ba583860b29568078c83ade.jpg',
+                description: 'Safe and efficient liquid waste collection and disposal services with full environmental compliance. We handle all types of liquid waste including hazardous materials.',
+                features: [
+                    'Licensed waste transport and disposal',
+                    'Environmental compliance guaranteed',
+                    'Various tanker sizes available',
+                    'Hazardous and non-hazardous waste',
+                    'Documentation and certificates provided'
+                ],
+                process: [
+                    'Waste assessment and classification',
+                    'Appropriate tanker deployment',
+                    'Safe collection and transport',
+                    'Approved disposal at licensed facilities',
+                    'Compliance documentation provided'
+                ],
+                equipment: 'Vacuum tankers (5000-10000 gallons), pumping equipment, safety gear'
+            },
+            'sump-pit': {
+                title: 'Sump Pit / Lift Station Cleaning',
+                image: 'https://kimi-web-img.moonshot.cn/img/greasetrapcleaninguae.com/4171f22ecde5fa6ae7f7f0c54e760c50d07ad98f.png',
+                description: 'Professional cleaning and maintenance of sump pits and lift stations to prevent flooding and ensure proper operation. Regular maintenance prevents system failures and costly repairs.',
+                features: [
+                    'Complete pit cleaning and pumping',
+                    'Pump inspection and maintenance',
+                    'Float switch testing and adjustment',
+                    'Odor control and sanitization',
+                    'Preventive maintenance schedules'
+                ],
+                process: [
+                    'Pump shutdown and isolation',
+                    'Complete pumping of pit contents',
+                    'High-pressure cleaning of walls',
+                    'Pump and float switch inspection',
+                    'System testing and reporting'
+                ],
+                equipment: 'Vacuum tankers, high-pressure washers, pump testing equipment, safety gear'
+            },
+            'septic-tank': {
+                title: 'Septic Tank Cleaning',
+                image: 'https://kimi-web-img.moonshot.cn/img/shanksterbros.net/c888a6361fd04073a503b2f77c26c4dae6c0e631.jpg',
+                description: 'Comprehensive septic tank cleaning and pumping services for residential and commercial properties. Regular maintenance prevents system failures and environmental contamination.',
+                features: [
+                    'Complete tank pumping and cleaning',
+                    'Inspection and maintenance checks',
+                    'Odor control and sanitization',
+                    'System efficiency optimization',
+                    'Maintenance scheduling available'
+                ],
+                process: [
+                    'Tank location and access assessment',
+                    'Pumping out all contents',
+                    'High-pressure cleaning of tank walls',
+                    'Inspection of inlet/outlet pipes',
+                    'System testing and reporting'
+                ],
+                equipment: 'Vacuum tankers, high-pressure washers, inspection cameras, safety equipment'
+            },
+            'sewage-plant': {
+                title: 'Sewage Treatment Plant Cleaning',
+                image: 'https://kimi-web-img.moonshot.cn/img/environmentalcleaning.org/8c997c2bd06ebd03cc78adfc9d18e334953faf9d.jpg',
+                description: 'Specialized cleaning and maintenance services for sewage treatment plants and wastewater facilities. We ensure optimal plant performance and regulatory compliance.',
+                features: [
+                    'Complete plant cleaning services',
+                    'Equipment inspection and maintenance',
+                    'Sludge removal and disposal',
+                    'Odor control systems',
+                    'Compliance reporting'
+                ],
+                process: [
+                    'Plant assessment and shutdown planning',
+                    'Sludge removal and tank cleaning',
+                    'Equipment inspection and servicing',
+                    'System restart and testing',
+                    'Performance monitoring'
+                ],
+                equipment: 'Industrial vacuum units, high-pressure systems, safety equipment, monitoring tools'
+            },
+            'warehouse-cleaning': {
+                title: 'Warehouse Floors Cleaning',
+                image: 'https://kimi-web-img.moonshot.cn/img/www.rigolift.com/be27e3e063a1ec11309e0e630aedae5119fa1be7.jpg',
+                description: 'Industrial warehouse floor cleaning and maintenance services using specialized equipment. We handle all types of industrial flooring with professional cleaning solutions.',
+                features: [
+                    'Industrial-grade cleaning equipment',
+                    'Oil and grease stain removal',
+                    'High-pressure washing',
+                    'Floor sealing and protection',
+                    'Scheduled maintenance programs'
+                ],
+                process: [
+                    'Floor assessment and preparation',
+                    'Stain treatment and removal',
+                    'High-pressure cleaning',
+                    'Sealing and protection application',
+                    'Final inspection and handover'
+                ],
+                equipment: 'Industrial scrubbers, high-pressure washers, floor treatment chemicals, safety gear'
+            },
+            'waste-water': {
+                title: 'Waste Water Removal',
+                image: 'https://kimi-web-img.moonshot.cn/img/watertankcleaners.co.in/d8df22d65e67d014889874b848ffbb4929ad8106.jpg',
+                description: 'Efficient removal and disposal of waste water from various sources including floods, leaks, and industrial processes. Emergency response available 24/7.',
+                features: [
+                    '24/7 emergency response',
+                    'Fast water extraction',
+                    'Industrial pumping capacity',
+                    'Safe disposal methods',
+                    'Drying and dehumidification'
+                ],
+                process: [
+                    'Emergency assessment and response',
+                    'Water extraction and removal',
+                    'Safe transport and disposal',
+                    'Area drying and dehumidification',
+                    'Final inspection and reporting'
+                ],
+                equipment: 'High-capacity pumps, vacuum tankers, dehumidifiers, safety equipment'
+            },
+            'streets-cleaning': {
+                title: 'Streets Cleaning Services',
+                image: 'https://kimi-web-img.moonshot.cn/img/img1.wsimg.com/53726969318c9abade70b760d31b1c6591aabda0.jpg',
+                description: 'Municipal and commercial street cleaning services to maintain clean and safe public areas. We provide comprehensive street maintenance for cities and communities.',
+                features: [
+                    'Municipal-grade equipment',
+                    'Street sweeping and washing',
+                    'Debris and waste removal',
+                    'Storm drain cleaning',
+                    'Scheduled maintenance programs'
+                ],
+                process: [
+                    'Area assessment and planning',
+                    'Mechanical sweeping and debris removal',
+                    'High-pressure washing',
+                    'Storm drain maintenance',
+                    'Quality inspection and reporting'
+                ],
+                equipment: 'Street sweepers, high-pressure washers, debris collection vehicles, safety gear'
+            },
+            'sewage-transport': {
+                title: 'Sewage Water Transport',
+                image: 'https://kimi-web-img.moonshot.cn/img/albarr.ae/e13741a1c4715f56b8ceced9190b0e16a7f499d9.jpg',
+                description: 'Transport of sewage water using specialized pumping tankers for safe and compliant disposal. We ensure proper handling and disposal according to environmental regulations.',
+                features: [
+                    'Licensed waste transport',
+                    'Various tanker sizes available',
+                    '24/7 transport services',
+                    'Environmental compliance',
+                    'GPS tracking and monitoring'
+                ],
+                process: [
+                    'Collection point assessment',
+                    'Tanker deployment and pumping',
+                    'Safe transport to treatment facility',
+                    'Proper disposal and documentation',
+                    'Transport completion reporting'
+                ],
+                equipment: 'Sewage tankers (5000-10000 gallons), pumping systems, GPS tracking, safety equipment'
+            },
+            'grease-trap': {
+                title: 'Grease Traps Cleaning & Waste Removal',
+                image: 'https://kimi-web-img.moonshot.cn/img/greasetrapboston.com/90a30c60f578940b0f04ae018d406b2487290afe.jpg',
+                description: 'Professional grease trap cleaning and waste removal services for restaurants and commercial kitchens. Dubai Municipality approved with proper waste disposal certificates.',
+                features: [
+                    'Dubai Municipality approved service',
+                    'Proper waste disposal certificates',
+                    'Regular maintenance schedules',
+                    'Emergency cleaning available',
+                    'Compliance with FOG regulations'
+                ],
+                process: [
+                    'Grease trap assessment',
+                    'Pumping out FOG and wastewater',
+                    'Thorough cleaning of trap components',
+                    'Inspection and maintenance checks',
+                    'Waste disposal certificates provided'
+                ],
+                equipment: 'Grease pumping equipment, cleaning tools, waste transport tankers'
+            }
+        };
+
+        function openServiceModal(serviceId) {
+            const modal = document.getElementById('service-modal');
+            const modalBody = document.getElementById('modal-body');
+            const service = serviceData[serviceId];
+
+            if (!service) {
+                modalBody.innerHTML = `
+                    <div class="text-center py-12">
+                        <i class="fas fa-exclamation-triangle text-6xl text-red-500 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">Service Details Coming Soon</h3>
+                        <p class="text-gray-600 mb-6">Detailed information for this service will be available shortly.</p>
+                        <button onclick="closeServiceModal()" class="bg-eco-green text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                            Close
+                        </button>
+                    </div>
+                `;
+            } else {
+                modalBody.innerHTML = `
+                    <div class="mb-6">
+                        <img src="${service.image}" alt="${service.title}" class="w-full h-64 object-cover rounded-lg mb-6">
+                        <h2 class="text-3xl font-display font-bold text-gray-900 mb-4">${service.title}</h2>
+                        <p class="text-gray-600 text-lg mb-6 font-body">${service.description}</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h3 class="text-xl font-display font-semibold text-gray-900 mb-4">Key Features</h3>
+                            <ul class="space-y-2">
+                                ${service.features.map(feature => `
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-eco-green mr-3 mt-1"></i>
+                                        <span class="text-gray-600 font-body">${feature}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-display font-semibold text-gray-900 mb-4">Service Process</h3>
+                            <ol class="space-y-2">
+                                ${service.process.map((step, index) => `
+                                    <li class="flex items-start">
+                                        <span class="bg-eco-green text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5 flex-shrink-0">${index + 1}</span>
+                                        <span class="text-gray-600 font-body">${step}</span>
+                                    </li>
+                                `).join('')}
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-eco-gray p-6 rounded-lg mb-8">
+                        <h3 class="text-xl font-display font-semibold text-gray-900 mb-3">Equipment Used</h3>
+                        <p class="text-gray-600 font-body">${service.equipment}</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <a href="contact.html" class="bg-eco-green text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors mr-4">
+                            <i class="fas fa-phone mr-2"></i>Request This Service
+                        </a>
+                        <a href="tel:+971589076688" class="bg-red-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-600 transition-colors">
+                            <i class="fas fa-exclamation-triangle mr-2"></i>Emergency Call
+                        </a>
+                    </div>
+                `;
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closeServiceModal() {
+            const modal = document.getElementById('service-modal');
+            modal.classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('service-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeServiceModal();
+            }
+        });
+    </script>
+</body>
+</html>
