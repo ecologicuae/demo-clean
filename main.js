@@ -181,7 +181,7 @@ function initializeWhatsAppButton() {
     const whatsappBtn = document.querySelector('.whatsapp-float');
     if (whatsappBtn) {
         whatsappBtn.addEventListener('click', function() {
-            const phoneNumber = '+971589076688'; // Primary contact number
+            const phoneNumber = '+971524192236'; // Primary contact number
             const message = encodeURIComponent('Hello, I need cleaning services. Can you help?');
             window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
         });
