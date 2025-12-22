@@ -83,9 +83,9 @@ A professional, responsive website for environmental cleaning services in UAE.
 
 ## Contact Information
 
-- **Primary Phone**: +971 58 907 6688
-- **Secondary Phone**: +971 58 265 8191
-- **Email**: ecologicuae@gmail.com
+- **Primary Phone**: +971 52 419 2236
+- **Secondary Phone**: +971 58 616 0989
+- **Email**: ecologichelp@gmail.com
 - **Service Areas**: All UAE Emirates (Dubai, Abu Dhabi, Sharjah, Ajman, UAQ, RAK, Fujairah)
 
 ## Deployment Instructions
@@ -196,8 +196,8 @@ All content is editable in the HTML files. Service descriptions, team informatio
 ## Support
 
 For technical support or customization requests:
-- Email: ecologicuae@gmail.com
-- Phone: +971 58 907 6688
+- Email: ecologichelp@gmail.com
+- Phone: +971 58 616 0989
 
 ---
 
