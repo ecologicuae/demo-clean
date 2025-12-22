@@ -520,55 +520,30 @@ html, body {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 
-               <!-- Contact Form -->
+   <!-- Contact Form -->
 <div class="slide-in-left">
     <h2 class="text-3xl font-display font-bold text-gray-900 mb-8">Send Us a Message</h2>
     
-    <form 
-        id="contact-form"
-        action="https://docs.google.com/forms/d/e/1FAIpQLSfu_D4QIfIBJerVz4rJYbGq1UM-nNKCjs6MPSY7_y_SuF3dGQ/formResponse"
-        method="POST"
-        target="hidden_iframe"
-        class="bg-white p-8 rounded-2xl shadow-xl space-y-6"
-    >
+    <form id="contact-form" class="bg-white p-8 rounded-2xl shadow-xl space-y-6">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
-                <input 
-                    type="text"
-                    name="entry.1075057620"
-                    required
-                    class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent"
-                >
+                <input type="text" name="entry.1075057620" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent">
             </div>
-
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
-                <input 
-                    type="tel"
-                    name="entry.1770452689"
-                    required
-                    class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent"
-                >
+                <input type="tel" name="entry.1770452689" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent">
             </div>
         </div>
         
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-            <input 
-                type="email"
-                name="entry.1822184159"
-                class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent"
-            >
+            <input type="email" name="entry.1822184159" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent">
         </div>
         
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Service Required *</label>
-            <select 
-                name="entry.1336561548"
-                required
-                class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent"
-            >
+            <select name="entry.1336561548" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent">
                 <option value="">Select a Service</option>
                 <option value="Emergency Jetting Unit">Emergency Jetting Unit</option>
                 <option value="Drain Unblocking & Cleaning">Drain Unblocking & Cleaning</option>
@@ -581,47 +556,47 @@ html, body {
         </div>
         
         <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Location / Address *</label>
-            <input 
-                type="text"
-                name="entry.134491027"
-                required
-                class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent"
-                placeholder="Enter your location in UAE"
-            >
+            <label class="block text-sm font-medium text-gray-700 mb-2">Location/Address *</label>
+            <input type="text" name="entry.134491027" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent" placeholder="Enter your location in UAE">
         </div>
         
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-            <textarea 
-                rows="4"
-                name="entry.1139898540"
-                class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent"
-                placeholder="Please describe your requirements..."
-            ></textarea>
+            <textarea name="entry.1139898540" rows="4" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent" placeholder="Please describe your requirements..."></textarea>
         </div>
         
         <div class="text-center">
-            <button 
-                type="submit"
-                class="bg-eco-green text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-700 transition-colors text-lg"
-            >
+            <button type="submit" class="bg-eco-green text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-700 transition-colors text-lg">
                 <i class="fas fa-paper-plane mr-2"></i>Send Message
             </button>
         </div>
     </form>
 
-    <!-- Success Message -->
-    <div 
-        id="form-success"
-        class="hidden mt-6 text-green-600 font-semibold text-center"
-    >
-        ✅ Thank you! We’ve received your request and will contact you shortly.
-    </div>
-
-    <!-- Hidden iframe -->
-    <iframe name="hidden_iframe" style="display:none;"></iframe>
+    <p id="form-success" class="text-green-600 mt-4 hidden">Your message has been sent! We will contact you soon.</p>
 </div>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const data = new FormData(form);
+    const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfu_D4QIfIBJerVz4rJYbGq1UM-nNKCjs6MPSY7_y_SuF3dGQ/formResponse';
+
+    fetch(googleFormUrl, {
+        method: 'POST',
+        mode: 'no-cors', // prevents redirect to Google Form
+        body: data
+    }).then(() => {
+        document.getElementById('form-success').classList.remove('hidden');
+        form.reset();
+    }).catch(err => {
+        alert('There was an error submitting your form. Please try again.');
+        console.error(err);
+    });
+});
+</script>
+
 
                 
                 <!-- Service Area Map -->
