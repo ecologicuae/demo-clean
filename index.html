@@ -679,83 +679,109 @@ html, body {
         </div>
     </section>
 
-    <!-- Quick Service Request Form -->
-    <section class="py-20 bg-eco-blue-light">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-display font-bold text-gray-900 mb-4">Request a Service</h2>
-                <p class="text-xl text-gray-600 font-body">Get in touch with us for immediate service or schedule a consultation</p>
-            </div>
-            
-            <div class="bg-white rounded-2xl shadow-xl p-8">
-                <form id="service-form" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
-                            <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent font-body">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
-                            <input type="tel" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent font-body">
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                        <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent font-body">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Service Required *</label>
-                        <select required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent font-body">
-                            <option value="">Select a Service</option>
-                            <option value="emergency">Emergency Jetting Unit</option>
-                            <option value="drain">Drain Unblocking & Cleaning</option>
-                            <option value="waste">Liquid Waste Collection</option>
-                            <option value="septic">Septic Tank Cleaning</option>
-                            <option value="grease">Grease Trap Cleaning</option>
-                            <option value="treatment">Sewage Treatment Plant</option>
-                            <option value="other">Other Services</option>
-                        </select>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Location/Address *</label>
-                        <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent font-body" placeholder="Enter your location in UAE">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Urgency Level</label>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
-                                <input type="radio" name="urgency" value="emergency" class="text-eco-green mr-3">
-                                <span class="text-sm font-body">Emergency (Immediate)</span>
-                            </label>
-                            <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
-                                <input type="radio" name="urgency" value="urgent" class="text-eco-green mr-3">
-                                <span class="text-sm font-body">Urgent (Today)</span>
-                            </label>
-                            <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
-                                <input type="radio" name="urgency" value="standard" class="text-eco-green mr-3">
-                                <span class="text-sm font-body">Standard (Schedule)</span>
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Additional Details</label>
-                        <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent font-body" placeholder="Please describe your service requirements..."></textarea>
-                    </div>
-                    
-                    <div class="text-center">
-                        <button type="submit" class="bg-eco-green text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-700 transition-colors text-lg shadow-lg hover:shadow-xl">
-                            <i class="fas fa-paper-plane mr-2"></i>Submit Request
-                        </button>
-                    </div>
-                </form>
-            </div>
+   <!-- Quick Service Request Form -->
+<section class="py-20 bg-eco-blue-light">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-display font-bold text-gray-900 mb-4">Request a Service</h2>
+            <p class="text-xl text-gray-600 font-body">Get in touch with us for immediate service or schedule a consultation</p>
         </div>
-    </section>
+        
+        <div class="bg-white rounded-2xl shadow-xl p-8">
+            <form id="service-form" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                        <input type="text" id="fullName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent font-body">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                        <input type="tel" id="phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent font-body">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent font-body">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Service Required *</label>
+                    <select id="service" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent font-body">
+                        <option value="">Select a Service</option>
+                        <option value="Emergency Jetting Unit">Emergency Jetting Unit</option>
+                        <option value="Drain Unblocking & Cleaning">Drain Unblocking & Cleaning</option>
+                        <option value="Liquid Waste Collection">Liquid Waste Collection</option>
+                        <option value="Septic Tank Cleaning">Septic Tank Cleaning</option>
+                        <option value="Grease Trap Cleaning">Grease Trap Cleaning</option>
+                        <option value="Sewage Treatment Plant">Sewage Treatment Plant</option>
+                        <option value="Other Services">Other Services</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Location/Address *</label>
+                    <input type="text" id="location" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent font-body" placeholder="Enter your location in UAE">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Urgency Level</label>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                            <input type="radio" name="urgency" value="Emergency (Immediate)" class="text-eco-green mr-3">
+                            <span class="text-sm font-body">Emergency (Immediate)</span>
+                        </label>
+                        <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                            <input type="radio" name="urgency" value="Urgent (Today)" class="text-eco-green mr-3">
+                            <span class="text-sm font-body">Urgent (Today)</span>
+                        </label>
+                        <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                            <input type="radio" name="urgency" value="Standard (Schedule)" class="text-eco-green mr-3">
+                            <span class="text-sm font-body">Standard (Schedule)</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Additional Details</label>
+                    <textarea id="details" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent font-body" placeholder="Please describe your service requirements..."></textarea>
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="bg-eco-green text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-700 transition-colors text-lg shadow-lg hover:shadow-xl">
+                        <i class="fas fa-paper-plane mr-2"></i>Submit Request
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+const form = document.getElementById("service-form");
+form.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const data = new FormData();
+    data.append("entry.324072990", document.getElementById("fullName").value);
+    data.append("entry.2100207740", document.getElementById("phone").value);
+    data.append("entry.1433406871", document.getElementById("email").value);
+    data.append("entry.1434655396", document.getElementById("service").value);
+    data.append("entry.1326003685", document.getElementById("location").value);
+    data.append("entry.1461156441", document.querySelector('input[name="urgency"]:checked')?.value || "");
+    data.append("entry.1635775620", document.getElementById("details").value);
+
+    fetch("https://docs.google.com/forms/d/e/1FAIpQLSchs7D4yRJXjNtOGSgnGuJ0u7xXHCmscA0OUJgoCjYo-GKE3g/formResponse", {
+        method: "POST",
+        body: data,
+        mode: "no-cors"
+    }).then(() => {
+        alert("Your service request has been submitted!");
+        form.reset();
+    });
+});
+</script>
+
 
     <!-- Contact Information -->
     <section class="py-20 bg-gray-900 text-white">
