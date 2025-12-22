@@ -215,17 +215,17 @@ function showEmergencyModal() {
             <span class="close-modal">&times;</span>
             <h2>Emergency Contact</h2>
             <div class="emergency-numbers">
-                <a href="tel:+971589076688" class="emergency-number">
+                <a href="tel:+971524192236" class="emergency-number">
                     <i class="fas fa-phone"></i>
-                    +971 58 907 6688
+                    +971 52 419 2236
                     <span>Primary Emergency</span>
                 </a>
-                <a href="tel:+971582658191" class="emergency-number">
+                <a href="tel:+971586160989" class="emergency-number">
                     <i class="fas fa-phone"></i>
-                    +971 58 265 8191
+                    +971 58 616 0989
                     <span>Secondary Emergency</span>
                 </a>
-                <a href="https://wa.me/971589076688" class="emergency-number whatsapp">
+                <a href="https://wa.me/971524192236" class="emergency-number whatsapp">
                     <i class="fab fa-whatsapp"></i>
                     WhatsApp Emergency
                     <span>24/7 Available</span>
@@ -458,7 +458,7 @@ function submitServiceRequest() {
             <h2>Request Submitted Successfully!</h2>
             <p>Thank you for your service request. Our team will contact you within 30 minutes.</p>
             <p>Emergency? Call us directly at:</p>
-            <a href="tel:+971589076688" class="emergency-call">+971 58 907 6688</a>
+            <a href="tel:+971524192236" class="emergency-call">+971 52 419 2236</a>
             <button onclick="closeModal()" class="close-btn">Close</button>
         </div>
     `;
@@ -489,7 +489,7 @@ function showAreaDetails(area, responseTime, coverage) {
                 <p><strong>Response Time:</strong> ${responseTime}</p>
                 <p><strong>Coverage:</strong> ${coverage}</p>
                 <p><strong>Services Available:</strong> All emergency and scheduled services</p>
-                <a href="tel:+971589076688" class="call-now">Call Now</a>
+                <a href="tel:+971524192236" class="call-now">Call Now</a>
             </div>
         </div>
     `;
