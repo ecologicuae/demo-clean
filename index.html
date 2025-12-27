@@ -4,6 +4,20 @@
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17823822317"></script>
 <script>
+    <script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) !== 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-17823822317/hG8wCNqp_NcbEO3jh7NC',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -322,8 +336,16 @@
    <div class="emergency-banner text-white text-center py-2 text-sm font-medium bg-red-600">
     <i class="fas fa-exclamation-triangle mr-2"></i>
     24/7 Emergency Services Available - Call Now: 
-    <a href="tel:+971524192236" class="underline font-bold">+971 52 419 2236</a> | 
-    <a href="tel:+971586160989" class="underline font-bold">+971 58 616 0989</a>
+    <a href="tel:+971524192236"
+   onclick="gtag_report_conversion('tel:+971524192236')"
+   class="underline font-bold">
+   +971 52 419 2236
+</a> 
+    <a href="tel:+971586160989"
+   onclick="gtag_report_conversion('tel:+971586160989')"
+   class="underline font-bold">
+   +971 58 616 0989
+</a>
 </div>
 
 <!-- Header / Navbar -->
@@ -346,7 +368,8 @@
                 <a href="services.html" class="text-gray-700 font-medium hover:text-eco-green transition-colors">Services</a>
                 <a href="about.html" class="text-gray-700 font-medium hover:text-eco-green transition-colors">About</a>
                 <a href="contact.html" class="text-gray-700 font-medium hover:text-eco-green transition-colors">Contact</a>
-                <button class="bg-red-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-600 transition-colors" onclick="showEmergencyModal()">
+                <button class="bg-red-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-600 transition-colors"
+        onclick="gtag_report_conversion(); showEmergencyModal();">
                     <i class="fas fa-phone mr-2"></i>Emergency
                 </button>
             </div>
@@ -398,7 +421,8 @@
             <a href="contact.html" class="block py-3 px-4 text-gray-700 hover:text-eco-green font-medium hover:bg-gray-50 rounded-lg transition-colors">
                 <i class="fas fa-phone mr-3"></i>Contact
             </a>
-            <button class="w-full mt-6 bg-red-500 text-white px-4 py-3 rounded-lg font-medium hover:bg-red-600 transition-colors" onclick="showEmergencyModal(); toggleMobileMenu();">
+            <button class="w-full mt-6 bg-red-500 text-white px-4 py-3 rounded-lg font-medium hover:bg-red-600 transition-colors"
+        onclick="gtag_report_conversion(); showEmergencyModal(); toggleMobileMenu();">
                 <i class="fas fa-exclamation-triangle mr-2"></i>24/7 Emergency Call
             </button>
         </div>
@@ -802,10 +826,14 @@ form.addEventListener("submit", function(e){
                     </div>
                     <h3 class="text-xl font-display font-semibold mb-4">Phone Numbers</h3>
                     <div class="space-y-3">
-                        <a href="tel:+971524192236" class="click-to-call block text-eco-green-light hover:underline font-mono font-body" data-phone="+971524192236">
+                        <a href="tel:+971524192236"
+   onclick="gtag_report_conversion('tel:+971524192236')"
+   class="click-to-call block text-eco-green-light hover:underline font-mono font-body"> data-phone="+971524192236">
                             +971 52 419 2236
                         </a>
-                        <a href="tel:+971586160989" class="click-to-call block text-eco-green-light hover:underline font-mono font-body" data-phone="+971586160989">
+                        <a href="tel:+971586160989"
+   onclick="gtag_report_conversion('tel:+971586160989')"
+   class="click-to-call block text-eco-green-light hover:underline font-mono font-body"> data-phone="+971586160989">
                             +971 58 616 0989
                         </a>
                     </div>
@@ -834,7 +862,8 @@ form.addEventListener("submit", function(e){
 
     <!-- WhatsApp Floating Button -->
     <div class="whatsapp-float">
-        <button class="bg-green-500 text-white w-16 h-16 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center" onclick="openWhatsApp()">
+        <button class="bg-green-500 text-white w-16 h-16 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center"
+        onclick="gtag_report_conversion('https://wa.me/971524192236'); openWhatsApp();">
             <i class="fab fa-whatsapp text-2xl"></i>
         </button>
     </div>
